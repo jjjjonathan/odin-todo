@@ -6,16 +6,16 @@ export default function Todo(title, description, dueDate, priority) {
 
   const setTitle = (newTitle) => {
     title = newTitle;
-  }
+  };
   const setDescription = (newDescription) => {
     description = newDescription;
-  }
+  };
   const setDueDate = (newDueDate) => {
     dueDate = newDueDate;
-  }
+  };
   const setPriority = (newPriority) => {
     priority = newPriority;
-  }
+  };
 
   return {
     getTitle,
@@ -26,5 +26,5 @@ export default function Todo(title, description, dueDate, priority) {
     setDescription,
     setDueDate,
     setPriority,
-  }
+  };
 }
