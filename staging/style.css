@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap');
+
+:root {
+  --white: #feefe5;
+  --black: #1C3144;
+  --green: #00916e;
+  --yellow: #FFCF00;
+  --orange: #EE6123;
+  --red: #FA003F;
+}
+
+body {
+  background: var(--white);
+  color: var(--black);
+  font-family: 'Mukta', 'Arial', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 800;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+.brand {
+  background: var(--black);
+  color: var(--white);
+  display: inline-block;
+  width: 200px;
+  text-align: center;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+}
+
+.projects {
+  width: 12rem;
+  position: fixed;
+}
+
+.projects a {
+  display: block;
+}
+
+.todos {
+  margin-left: 200px;
+}
+
+.todos ul {
+  list-style: none;
+}
