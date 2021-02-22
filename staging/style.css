@@ -53,7 +53,7 @@ h1 {
 
 .projects li {
   border-bottom: 1px solid var(--black);
-  padding: .5rem 0;
+  padding: .6rem 0;
 }
 
 .projects li:last-child {
@@ -84,13 +84,21 @@ h1 {
 }
 
 .todos li {
-  padding: .5rem 0;
+  padding: .6rem 0;
 }
 
-.todos .todo-title {
+.todo-title {
   margin-left: 2.5rem;
 }
 
-.todos li:last-child {
-  border: none;
+.todo-expanded {
+  margin-left: 2.5rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--black);
+}
+
+.todo-description {
+  font-size: 1rem;
+  font-weight: 400;
+
 }
