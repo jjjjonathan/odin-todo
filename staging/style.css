@@ -15,6 +15,11 @@ body {
   font-family: 'Mukta', 'Arial', sans-serif;
 }
 
+.container {
+  margin: 0 auto;
+  width: 54rem;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-weight: 800;
 }
@@ -27,25 +32,65 @@ h1 {
   background: var(--black);
   color: var(--white);
   display: inline-block;
-  width: 200px;
+  width: 14rem;
   text-align: center;
   padding: 1rem 2rem;
   border-radius: 2rem;
 }
 
 .projects {
-  width: 12rem;
+  width: 14rem;
   position: fixed;
+  padding-left: 2rem;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.projects ul {
+  list-style: none;
+  padding: 0;
+}
+
+.projects li {
+  border-bottom: 1px solid var(--black);
+  padding: .5rem 0;
+}
+
+.projects li:last-child {
+  border: none;
 }
 
 .projects a {
-  display: block;
+  text-decoration: none;
+  color: inherit;
 }
 
 .todos {
-  margin-left: 200px;
+  margin-left: 20rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: inherit;
 }
 
 .todos ul {
   list-style: none;
+  padding: 0;
+}
+
+.todos ion-icon {
+  font-size: 2rem;
+  position: fixed;
+}
+
+.todos li {
+  padding: .5rem 0;
+}
+
+.todos .todo-title {
+  margin-left: 2.5rem;
+}
+
+.todos li:last-child {
+  border: none;
 }
