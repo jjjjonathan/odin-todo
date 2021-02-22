@@ -52,8 +52,8 @@ h1 {
 }
 
 .projects li {
-  border-bottom: 1px solid var(--black);
-  padding: .6rem 0;
+  border-bottom: 2px solid var(--black);
+  padding: .8rem;
 }
 
 .projects li:last-child {
