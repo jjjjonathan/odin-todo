@@ -17,7 +17,8 @@ body {
 
 .container {
   margin: 0 auto;
-  width: 54rem;
+  max-width: 54rem;
+  border: 1px solid red;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -60,6 +61,11 @@ h1 {
   border: none;
 }
 
+.projects li:hover {
+  color: var(--green);
+  cursor: pointer;
+}
+
 .projects a {
   text-decoration: none;
   color: inherit;
@@ -78,7 +84,7 @@ h1 {
   padding: 0;
 }
 
-.todos ion-icon {
+.checkbox {
   font-size: 2rem;
   position: fixed;
 }
@@ -91,6 +97,25 @@ h1 {
   margin-left: 2.5rem;
 }
 
+.todo-right-info {
+  float: right;
+  font-size: 1rem;
+  position: relative;
+}
+
+.due-date {
+  margin-right: 2.2rem;
+  position: relative;
+  top: .25rem;
+}
+
+.important {
+  font-size: 1.5rem;
+  position: absolute;
+  right: .4rem;
+  top: .25rem;
+}
+
 .todo-expanded {
   margin-left: 2.5rem;
   padding-left: 1rem;
@@ -100,5 +125,20 @@ h1 {
 .todo-description {
   font-size: 1rem;
   font-weight: 400;
+}
 
+
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar li {
+    float: left;
+  }
+  .todos {
+    margin-left: 0;
+  }
 }
