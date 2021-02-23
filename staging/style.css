@@ -9,6 +9,14 @@
   --red: #FA003F;
 }
 
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 body {
   background: var(--white);
   color: var(--black);
@@ -29,19 +37,22 @@ h1 {
   font-size: 3em;
 }
 
+.sidebar {
+  width: 14rem;
+}
+
 .brand {
+  width: 100%;
   background: var(--black);
   color: var(--white);
   display: inline-block;
-  width: 14rem;
   text-align: center;
   padding: 1rem 2rem;
   border-radius: 2rem;
 }
 
 .projects {
-  width: 14rem;
-  position: fixed;
+  width: 100%;
   padding-left: 2rem;
   font-size: 1.2rem;
   font-weight: 800;
@@ -133,7 +144,9 @@ h1 {
   .sidebar {
     width: 100%;
     height: auto;
-    position: relative;
+  }
+  .brand {
+    width: 100%;
   }
   .sidebar li {
     float: left;
