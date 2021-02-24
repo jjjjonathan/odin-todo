@@ -10,13 +10,23 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/dom.js":
+/*!********************!*\
+  !*** ./src/dom.js ***!
+  \********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((function dom() {\n  const renderProjects = (projects) => {\n    const projectContainer = document.getElementById(\"project-container\");\n    projectContainer.textContent = \"\";\n    \n    projects.forEach((project, index) => {\n      const listItem = document.createElement(\"li\");\n      listItem.dataset.index = index;\n      listItem.textContent = project.getTitle();\n      projectContainer.appendChild(listItem)\n    })\n  }\n\n  const renderTodos = (project) => {\n    \n  }\n\n  return {\n    renderProjects,\n    renderTodos,\n  }\n})());\n\n//# sourceURL=webpack://odin-todo/./src/dom.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _todo_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./todo.js */ \"./src/todo.js\");\n/* harmony import */ var _project_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./project.js */ \"./src/project.js\");\n/* harmony import */ var _trash_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./trash.js */ \"./src/trash.js\");\n\n\n\n\n\n\n//# sourceURL=webpack://odin-todo/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _todo_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./todo.js */ \"./src/todo.js\");\n/* harmony import */ var _project_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./project.js */ \"./src/project.js\");\n/* harmony import */ var _trash_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./trash.js */ \"./src/trash.js\");\n/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./dom.js */ \"./src/dom.js\");\n\n\n\n\n\n// initialize project array and default project\nconst projects = [];\nprojects.push((0,_project_js__WEBPACK_IMPORTED_MODULE_1__.default)(\"Default Project\", []));\nprojects.push((0,_project_js__WEBPACK_IMPORTED_MODULE_1__.default)(\"Test Project\", []));\n\n\n\n\nfunction onload() {\n  _dom_js__WEBPACK_IMPORTED_MODULE_3__.default.renderProjects(projects);\n}\n\ndocument.addEventListener(\"DOMContentLoaded\", onload);\n\n//# sourceURL=webpack://odin-todo/./src/index.js?");
 
 /***/ }),
 
@@ -36,7 +46,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \*********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Todo)\n/* harmony export */ });\nfunction Todo(title, description, dueDate, priority) {\n  const getTitle = () => title;\n  const getDescription = () => description;\n  const getDueDate = () => dueDate;\n  const getPriority = () => priority;\n\n  const setTitle = (newTitle) => {\n    title = newTitle;\n  };\n  const setDescription = (newDescription) => {\n    description = newDescription;\n  };\n  const setDueDate = (newDueDate) => {\n    dueDate = newDueDate;\n  };\n  const setPriority = (newPriority) => {\n    priority = newPriority;\n  };\n\n  return {\n    getTitle,\n    getDescription,\n    getDueDate,\n    getPriority,\n    setTitle,\n    setDescription,\n    setDueDate,\n    setPriority,\n  };\n}\n\n\n//# sourceURL=webpack://odin-todo/./src/todo.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Todo)\n/* harmony export */ });\nfunction Todo(title, description, dueDate, isImportant, isChecked) {\n  const getTitle = () => title;\n  const getDescription = () => description;\n  const getDueDate = () => dueDate;\n  const getImportantState = () => isImportant;\n  const getCheckedState = () => isChecked;\n\n  const setTitle = (newTitle) => {\n    title = newTitle;\n  };\n  const setDescription = (newDescription) => {\n    description = newDescription;\n  };\n  const setDueDate = (newDueDate) => {\n    dueDate = newDueDate;\n  };\n  const toggleImportantState = () => {\n    isImportant = isImportant ? false : true;\n  };\n  const toggleCheckedState = () => {\n    isChecked = isChecked ? false : true;\n  }\n\n  return {\n    getTitle,\n    getDescription,\n    getDueDate,\n    getImportantState,\n    getCheckedState,\n    setTitle,\n    setDescription,\n    setDueDate,\n    toggleImportantState,\n    toggleCheckedState,\n  };\n}\n\n\n//# sourceURL=webpack://odin-todo/./src/todo.js?");
 
 /***/ }),
 
