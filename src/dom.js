@@ -33,7 +33,19 @@ export default (function dom() {
       rightInfo.classList.add("todo-right-info")
       listItem.appendChild(rightInfo)
 
-      // add due date, important badge
+      if (todo.getDueDate()) {
+        const dueDate = document.createElement("span");
+        dueDate.classList.add("due-date");
+        dueDate.textContent = todo.getDueDate();
+        rightInfo.appendChild(dueDate);
+      }
+
+      if (todo.getImportantState()) {
+        const important = document.createElement("ion-icon");
+        important.setAttribute("name", "alert-circle");
+        important.classList.add("important");
+        rightInfo.appendChild(important);
+      }
 
       todoContainer.appendChild(listItem);
     })
