@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap');
+
+:root {
+  --white: #feefe5;
+  --black: #1C3144;
+  --green: #00916e;
+  --yellow: #FFCF00;
+  --orange: #EE6123;
+  --red: #FA003F;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  background: var(--white);
+  color: var(--black);
+  font-family: 'Mukta', 'Arial', sans-serif;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 54rem;
+}
+d
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 800;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+.sidebar {
+  width: 18rem;
+}
+
+.brand {
+  width: 100%;
+  background: var(--black);
+  color: var(--white);
+  display: inline-block;
+  text-align: center;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+}
+
+.projects {
+  width: 100%;
+  padding: 0 1rem;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.projects ul {
+  list-style: none;
+  padding: 0;
+}
+
+.projects li {
+  border-bottom: 2px solid var(--black);
+  padding: .8rem;
+}
+
+.projects li:last-child {
+  border: none;
+}
+
+.projects li:hover {
+  color: var(--green);
+  cursor: pointer;
+}
+
+.projects a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.todos {
+  margin-left: 20rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: inherit;
+  position: absolute;
+  top: 12rem;
+  max-width: 34rem;
+  width: 100%;
+}
+
+.todos ul {
+  list-style: none;
+  padding: 0;
+}
+
+.checkbox {
+  font-size: 2rem;
+  position: absolute;
+}
+
+.todos li {
+  padding: .6rem 0;
+}
+
+.todo-title {
+  margin-left: 2.5rem;
+}
+
+.todo-right-info {
+  float: right;
+  font-size: 1rem;
+  position: relative;
+}
+
+.due-date {
+  margin-right: 2.2rem;
+  position: relative;
+  top: .25rem;
+}
+
+.important {
+  font-size: 1.5rem;
+  position: absolute;
+  right: .4rem;
+  top: .25rem;
+}
+
+.todo-expanded {
+  margin-left: 2.5rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--black);
+}
+
+.todo-description {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
+@media screen and (max-width: 900px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+  }
+
+  .brand {
+    display: block;
+    width: 90%;
+    margin: 2rem auto;
+  }
+
+  .projects li {
+    display: inline;
+    border-bottom: none;
+    border-right: 2px solid var(--black);
+    padding: .6rem 2rem;
+  }
+  
+  .projects li:last-child {
+    border: none;
+  }
+
+  .todos {
+    position: static;
+    display: block;
+    margin-left: 2rem;
+    margin-top: 2rem;
+    width: 100%;
+  }
+}
