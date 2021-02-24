@@ -8,11 +8,15 @@ const projects = [];
 projects.push(Project("Default Project", []));
 projects.push(Project("Test Project", []));
 
+// add example todo in Default Project
+projects[0].addChild(Todo("Walk the dog", "Don't forget to bring a poop bag", "March 17", false, false), -1)
+
 
 
 
 function onload() {
   dom.renderProjects(projects);
+  dom.renderTodos(projects[0]);
 }
 
 document.addEventListener("DOMContentLoaded", onload);
