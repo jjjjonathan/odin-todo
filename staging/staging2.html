@@ -14,7 +14,8 @@
             <li>Project 1</li>
             <li>Project 2</li>
             <li>Project 3</li>
-            <li id="trash">Trash</li>
+            <li id="trash">Trash<ion-icon name="trash"></ion-icon>
+            </li>
           </ul>
         </div>
       </div>
@@ -41,14 +42,20 @@
           <li>
             <ion-icon name="square-outline" class="checkbox"></ion-icon>
             <span class="todo-title">Churn some butter</span>
-            <span class="pill-badge due-date">Anytime</span>
+            <input type="text" class="pill-badge due-date due-date-edit todo-text-edit" value="Anytime">
             <span class="pill-badge priority priority-1"></span>
           </li>
           <li>
             <ion-icon name="square-outline" class="checkbox"></ion-icon>
-            <input type="text" class="todo-title-edit" value="Create new todo">
+            <input type="text" class="todo-title todo-title-edit todo-text-edit" value="Create new todo">
             <span class="pill-badge due-date">Anytime</span>
             <span class="pill-badge priority priority-1"></span>
+          </li>
+          <li>
+            <ion-icon name="checkbox-outline" class="checkbox"></ion-icon>
+            <span class="todo-title">Plant another tree</span>
+            <span class="pill-badge due-date">May 26</span>
+            <span class="pill-badge priority priority-3"></span>
           </li>
         </ul>
       </div>

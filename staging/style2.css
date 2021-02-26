@@ -90,8 +90,10 @@ h1 {
   color: inherit;
 }
 
-#trash {
-  color: red;
+#trash ion-icon {
+  font-size: 1.4rem;
+  vertical-align: -.25rem;
+  margin-left: .3rem
 }
 
 .todos {
@@ -114,6 +116,7 @@ h1 {
 .checkbox {
   font-size: 2rem;
   position: absolute;
+  cursor: pointer;
 }
 
 .todos li {
@@ -122,20 +125,22 @@ h1 {
 
 .todo-title {
   margin-left: 2.5rem;
+  user-select: text;
 }
 
 .todo-title-edit {
-  margin-left: 2.5rem;
+  width: 20rem;
+}
+
+.todo-text-edit {
   font: inherit;
   background: none;
   color: inherit;
   border: none;
   padding: 0;
-  width: 20rem;
 }
 
 .pill-badge {
-  background: var(--green);
   color: var(--white);
   font-size: .8rem;
   font-weight: 300;
@@ -145,9 +150,19 @@ h1 {
   vertical-align: .1rem;
 }
 
+.due-date {
+  background: var(--green);
+  user-select: text;
+}
+
+.due-date-edit {
+  width: 6rem;
+}
+
 .priority {
   font-weight: 600;
   padding: .2rem .6rem;
+  cursor: pointer;
 }
 
 .priority-1 {
