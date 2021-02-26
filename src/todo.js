@@ -1,15 +1,11 @@
-export default function Todo(title, description, dueDate, isImportant, isChecked) {
+export default function Todo(title, dueDate, isImportant, isChecked) {
   const getTitle = () => title;
-  const getDescription = () => description;
   const getDueDate = () => dueDate;
   const getImportantState = () => isImportant;
   const getCheckedState = () => isChecked;
 
   const setTitle = (newTitle) => {
     title = newTitle;
-  };
-  const setDescription = (newDescription) => {
-    description = newDescription;
   };
   const setDueDate = (newDueDate) => {
     dueDate = newDueDate;
@@ -23,12 +19,10 @@ export default function Todo(title, description, dueDate, isImportant, isChecked
 
   return {
     getTitle,
-    getDescription,
     getDueDate,
     getImportantState,
     getCheckedState,
     setTitle,
-    setDescription,
     setDueDate,
     toggleImportantState,
     toggleCheckedState,
