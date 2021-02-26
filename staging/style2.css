@@ -90,6 +90,10 @@ h1 {
   color: inherit;
 }
 
+#trash {
+  color: red;
+}
+
 .todos {
   margin-left: 20rem;
   font-size: 1.2rem;
@@ -118,6 +122,16 @@ h1 {
 
 .todo-title {
   margin-left: 2.5rem;
+}
+
+.todo-title-edit {
+  margin-left: 2.5rem;
+  font: inherit;
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  width: 20rem;
 }
 
 .pill-badge {
