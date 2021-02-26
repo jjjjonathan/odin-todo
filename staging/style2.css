@@ -74,16 +74,24 @@ h1 {
 
 .projects li {
   border-bottom: 2px solid var(--black);
-  padding: .8rem;
+  padding: .8rem 1.5rem;
 }
 
 .projects li:last-child {
   border: none;
 }
 
-.projects li:hover {
+.projects li:hover:not(.active-project) {
   color: var(--green);
+}
+
+.projects li:hover {
   cursor: pointer;
+}
+
+.active-project {
+  color: var(--white);
+  background: var(--black);
 }
 
 .projects a {
