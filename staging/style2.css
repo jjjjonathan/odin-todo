@@ -35,8 +35,9 @@ body {
 .container {
   margin: 0 auto;
   max-width: 54rem;
+  display: relative;
 }
-d
+
 h1, h2, h3, h4, h5, h6 {
   font-weight: 800;
 }
@@ -191,7 +192,17 @@ h1 {
   content: "!"
 }
 
+.new-item-text {
+  opacity: 0.5;
+}
 
+.new-todo-button {
+  cursor: pointer;
+}
+
+.new-todo-button:hover {
+  color: var(--green)
+}
 
 
 /* On screens that are less than 700px wide, make the sidebar into a topbar */
