@@ -1,3 +1,5 @@
+import projects from "./index.js"
+
 export default (function dom() {
   const renderProjects = (projects) => {
     const projectContainer = document.getElementById("project-container");
@@ -7,6 +9,7 @@ export default (function dom() {
       const listItem = document.createElement("li");
       listItem.dataset.index = index;
       listItem.textContent = project.getTitle();
+      listItem.addEventListener("click", handleProjectClick);
       projectContainer.appendChild(listItem)
     })
   }
@@ -29,9 +32,11 @@ export default (function dom() {
       title.textContent = todo.getTitle();
       listItem.appendChild(title)
 
-      const rightInfo = document.createElement("div");
-      rightInfo.classList.add("todo-right-info")
-      listItem.appendChild(rightInfo)
+      //if (todo.getDueDate() || todo.getImportantState()) {
+        const rightInfo = document.createElement("div");
+        rightInfo.classList.add("todo-right-info")
+        listItem.appendChild(rightInfo)
+      //}
 
       if (todo.getDueDate()) {
         const dueDate = document.createElement("span");
@@ -49,6 +54,13 @@ export default (function dom() {
 
       todoContainer.appendChild(listItem);
     })
+  }
+
+  // click handlers
+
+  const handleProjectClick = (event) => {
+    const clickedIndex = event.target.dataset.index;
+    renderTodos(projects[clickedIndex]);
   }
 
   return {

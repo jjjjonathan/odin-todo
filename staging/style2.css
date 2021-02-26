@@ -120,39 +120,53 @@ h1 {
   margin-left: 2.5rem;
 }
 
-.todo-right-info {
-  float: right;
-  font-size: 1rem;
-  position: relative;
+.pill-badge {
+  background: var(--green);
+  color: var(--white);
+  font-size: .8rem;
+  font-weight: 300;
+  padding: .2rem .5rem;
+  margin-left: .4rem;
+  border-radius: 2rem;
+  vertical-align: .1rem;
 }
 
-.due-date {
-  margin-right: 2.2rem;
-  position: relative;
-  top: .25rem;
+.priority {
+  font-weight: 600;
+  padding: .2rem .6rem;
 }
 
-.important {
-  font-size: 1.5rem;
-  position: absolute;
-  right: .4rem;
-  top: .25rem;
+.priority-1 {
+  background: var(--red);
 }
 
-.todo-expanded {
-  margin-left: 2.5rem;
-  padding-left: 1rem;
-  border-left: 2px solid var(--black);
+.priority-1:after {
+  content: "!!!"
 }
 
-.todo-description {
-  font-size: 1rem;
-  font-weight: 400;
+.priority-2 {
+  background: var(--orange);
 }
+
+.priority-2:after {
+  content: "!!"
+}
+
+.priority-3 {
+  background: var(--yellow);
+  color: var(--black);
+  padding: .2rem .7rem;
+}
+
+.priority-3:after {
+  content: "!"
+}
+
+
 
 
 /* On screens that are less than 700px wide, make the sidebar into a topbar */
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 700px) {
   .sidebar {
     width: 100%;
     height: auto;
@@ -164,16 +178,20 @@ h1 {
     margin: 2rem auto;
   }
 
-  .projects li {
-    display: inline;
-    border-bottom: none;
-    border-right: 2px solid var(--black);
-    padding: .6rem 2rem;
+  .projects {
+    padding: none;
+    margin: none;
+    text-align: center;
   }
-  
-  .projects li:last-child {
+
+  .projects li {
+    display: inline-block;
+    padding: .6rem 2rem;
+    margin: .4rem auto;
     border: none;
   }
+  
+
 
   .todos {
     position: static;
