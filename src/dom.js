@@ -85,6 +85,28 @@ export default (function dom() {
     renderTodos();
   };
 
+  const commitTextField = () => {
+    const input = document.querySelector(".todo-text-edit");
+
+    if (input) {
+      const newValue = input.value;
+      const node = input.parentNode;
+      const index = node.dataset.index;
+      const currentTodo = state.getActiveProject().getChildren()[index];
+
+      if (node.classList.contains("todo-title")) {
+        currentTodo.setTitle(newValue);
+        node.textContent = currentTodo.getTitle();
+      } else if (node.classList.contains("due-date")) {
+        currentTodo.setDueDate(newValue);
+        node.textContent = currentTodo.getDueDate();
+      }
+
+      document.removeEventListener("click", handleClickToCloseTextField);
+      node.addEventListener("click", handleTextFieldClick);
+    }
+  };
+
   // click handlers
 
   const handleProjectClick = (event) => {
@@ -101,6 +123,7 @@ export default (function dom() {
   };
 
   const handleTextFieldClick = (event) => {
+    commitTextField();
     const clickedIndex = event.target.dataset.index;
     const currentTodo = state.getActiveProject().getChildren()[clickedIndex];
 
@@ -144,22 +167,7 @@ export default (function dom() {
 
   const handleClickToCloseTextField = (event) => {
     if (event.target.classList.contains("escape")) {
-      const input = document.querySelector(".todo-text-edit");
-      const newValue = input.value;
-      const node = input.parentNode;
-      const index = node.dataset.index;
-      const currentTodo = state.getActiveProject().getChildren()[index];
-
-      if (node.classList.contains("todo-title")) {
-        currentTodo.setTitle(newValue);
-        node.textContent = currentTodo.getTitle();
-      } else if (node.classList.contains("due-date")) {
-        currentTodo.setDueDate(newValue);
-        node.textContent = currentTodo.getDueDate();
-      }
-
-      document.removeEventListener("click", handleClickToCloseTextField);
-      node.addEventListener("click", handleTextFieldClick);
+      commitTextField();
     }
   };
 
