@@ -69,6 +69,7 @@ export default (function dom() {
 
       // event listeners
       checkbox.addEventListener("click", handleCheckboxClick);
+      title.addEventListener("click", handleTitleClick);
       priority.addEventListener("click", handlePriorityClick);
     });
   };
@@ -95,6 +96,24 @@ export default (function dom() {
     const currentTodo = state.getActiveProject().getChildren()[clickedIndex];
     currentTodo.toggleCheckedState();
     renderTodos();
+  };
+
+  const handleTitleClick = (event) => {
+    const clickedIndex = event.target.dataset.index;
+    const currentTodo = state.getActiveProject().getChildren()[clickedIndex];
+    
+    const node = event.target;
+    node.textContent = "";
+
+    const input = document.createElement("input");
+    input.type = "text";
+    input.classList.add("todo-title-edit", "todo-text-edit");
+    input.value = currentTodo.getTitle();
+
+    node.appendChild(input);
+    input.focus();
+
+    node.removeEventListener("click", handleTitleClick);
   };
 
   const handlePriorityClick = (event) => {
