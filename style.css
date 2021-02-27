@@ -27,8 +27,9 @@ body {
 .container {
   margin: 0 auto;
   max-width: 54rem;
+  display: relative;
 }
-d
+
 h1, h2, h3, h4, h5, h6 {
   font-weight: 800;
 }
@@ -65,21 +66,35 @@ h1 {
 
 .projects li {
   border-bottom: 2px solid var(--black);
-  padding: .8rem;
+  padding: .8rem 1.5rem;
 }
 
 .projects li:last-child {
   border: none;
 }
 
-.projects li:hover {
+.projects li:hover:not(.active-project) {
   color: var(--green);
+}
+
+.projects li:hover {
   cursor: pointer;
+}
+
+.active-project {
+  color: var(--white);
+  background: var(--black);
 }
 
 .projects a {
   text-decoration: none;
   color: inherit;
+}
+
+#trash ion-icon {
+  font-size: 1.4rem;
+  vertical-align: -.25rem;
+  margin-left: .3rem
 }
 
 .todos {
@@ -102,6 +117,7 @@ h1 {
 .checkbox {
   font-size: 2rem;
   position: absolute;
+  cursor: pointer;
 }
 
 .todos li {
@@ -110,41 +126,87 @@ h1 {
 
 .todo-title {
   margin-left: 2.5rem;
+  user-select: text;
 }
 
-.todo-right-info {
-  float: right;
-  font-size: 1rem;
-  position: relative;
+.todo-title-edit {
+  width: 20rem;
+}
+
+.todo-text-edit {
+  font: inherit;
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+}
+
+.pill-badge {
+  color: var(--white);
+  font-size: .8rem;
+  font-weight: 300;
+  padding: .2rem .5rem;
+  margin-left: .4rem;
+  border-radius: 2rem;
+  vertical-align: .1rem;
 }
 
 .due-date {
-  margin-right: 2.2rem;
-  position: relative;
-  top: .25rem;
+  background: var(--green);
+  user-select: text;
 }
 
-.important {
-  font-size: 1.5rem;
-  position: absolute;
-  right: .4rem;
-  top: .25rem;
+.due-date-edit {
+  width: 6rem;
 }
 
-.todo-expanded {
-  margin-left: 2.5rem;
-  padding-left: 1rem;
-  border-left: 2px solid var(--black);
+.priority {
+  font-weight: 600;
+  padding: .2rem .6rem;
+  cursor: pointer;
 }
 
-.todo-description {
-  font-size: 1rem;
-  font-weight: 400;
+.priority-1 {
+  background: var(--red);
+}
+
+.priority-1:after {
+  content: "!!!"
+}
+
+.priority-2 {
+  background: var(--orange);
+}
+
+.priority-2:after {
+  content: "!!"
+}
+
+.priority-3 {
+  background: var(--yellow);
+  color: var(--black);
+  padding: .2rem .7rem;
+}
+
+.priority-3:after {
+  content: "!"
+}
+
+.new-item-text {
+  opacity: 0.5;
+}
+
+.new-todo-button {
+  cursor: pointer;
+}
+
+.new-todo-button:hover {
+  color: var(--green)
 }
 
 
 /* On screens that are less than 700px wide, make the sidebar into a topbar */
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 700px) {
   .sidebar {
     width: 100%;
     height: auto;
@@ -156,17 +218,19 @@ h1 {
     margin: 2rem auto;
   }
 
-  .projects li {
-    display: inline;
-    border-bottom: none;
-    border-right: 2px solid var(--black);
-    padding: .6rem 2rem;
-  }
-  
-  .projects li:last-child {
-    border: none;
+  .projects {
+    padding: none;
+    margin: none;
+    text-align: center;
   }
 
+  .projects li {
+    display: inline-block;
+    padding: .6rem 2rem;
+    margin: .4rem auto;
+    border: none;
+  }
+  
   .todos {
     position: static;
     display: block;
