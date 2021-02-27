@@ -10,6 +10,15 @@ export default (function dom() {
       listItem.dataset.index = index;
       listItem.textContent = project.getTitle();
       listItem.addEventListener("click", handleProjectClick);
+
+      if (project.hasOwnProperty("empty")) {
+        listItem.id = "trash";
+
+        const icon = document.createElement("ion-icon");
+        icon.setAttribute("name", "trash");
+        listItem.appendChild(icon);
+      }
+
       projectContainer.appendChild(listItem)
     })
   }
