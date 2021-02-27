@@ -70,7 +70,8 @@ export default (function dom() {
 
       // event listeners
       checkbox.addEventListener("click", handleCheckboxClick);
-      title.addEventListener("click", handleTitleClick);
+      title.addEventListener("click", handleTextFieldClick);
+      dueDate.addEventListener("click", handleTextFieldClick);
       priority.addEventListener("click", handlePriorityClick);
     });
   };
@@ -99,7 +100,7 @@ export default (function dom() {
     renderTodos();
   };
 
-  const handleTitleClick = (event) => {
+  const handleTextFieldClick = (event) => {
     const clickedIndex = event.target.dataset.index;
     const currentTodo = state.getActiveProject().getChildren()[clickedIndex];
 
@@ -108,13 +109,20 @@ export default (function dom() {
 
     const input = document.createElement("input");
     input.type = "text";
-    input.classList.add("todo-title-edit", "todo-text-edit");
-    input.value = currentTodo.getTitle();
+    input.classList.add("todo-text-edit");
+
+    if (node.classList.contains("todo-title")) {
+      input.classList.add("todo-title-edit");
+      input.value = currentTodo.getTitle();
+    } else if (node.classList.contains("due-date")) {
+      input.classList.add("due-date-edit");
+      input.value = currentTodo.getDueDate();
+    }
 
     node.appendChild(input);
     input.focus();
 
-    node.removeEventListener("click", handleTitleClick);
+    node.removeEventListener("click", handleTextFieldClick);
     document.addEventListener("click", handleClickToCloseTextField);
   };
 
@@ -136,20 +144,22 @@ export default (function dom() {
 
   const handleClickToCloseTextField = (event) => {
     if (event.target.classList.contains("escape")) {
-      const textField = document.querySelector(".todo-text-edit");
-      const newValue = textField.value;
-      const titleSpan = textField.parentNode;
-      const textFieldIndex = titleSpan.dataset.index;
-      const currentTodo = state.getActiveProject().getChildren()[
-        textFieldIndex
-      ];
-      
-      currentTodo.setTitle(newValue);
+      const input = document.querySelector(".todo-text-edit");
+      const newValue = input.value;
+      const node = input.parentNode;
+      const index = node.dataset.index;
+      const currentTodo = state.getActiveProject().getChildren()[index];
 
-      titleSpan.textContent = currentTodo.getTitle();
+      if (node.classList.contains("todo-title")) {
+        currentTodo.setTitle(newValue);
+        node.textContent = currentTodo.getTitle();
+      } else if (node.classList.contains("due-date")) {
+        currentTodo.setDueDate(newValue);
+        node.textContent = currentTodo.getDueDate();
+      }
 
       document.removeEventListener("click", handleClickToCloseTextField);
-      titleSpan.addEventListener("click", handleTitleClick);
+      node.addEventListener("click", handleTextFieldClick);
     }
   };
 
