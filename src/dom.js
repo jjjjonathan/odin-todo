@@ -110,6 +110,7 @@ export default (function dom() {
   // click handlers
 
   const handleProjectClick = (event) => {
+    commitTextField();
     const clickedIndex = event.target.dataset.index;
     state.setActiveProject(clickedIndex);
     renderAll();
@@ -119,7 +120,14 @@ export default (function dom() {
     const clickedIndex = event.target.dataset.index;
     const currentTodo = state.getActiveProject().getChildren()[clickedIndex];
     currentTodo.toggleCheckedState();
-    renderTodos();
+    
+    const node = document.querySelector(
+      `.checkbox[data-index="${clickedIndex}"]`
+    );
+    node.setAttribute(
+      "name",
+      currentTodo.getCheckedState() ? "checkbox-outline" : "square-outline"
+    )
   };
 
   const handleTextFieldClick = (event) => {
