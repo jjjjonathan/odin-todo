@@ -34,6 +34,7 @@ export default (function dom() {
     project.getChildren().forEach((todo, index) => {
       const listItem = document.createElement("li");
       listItem.dataset.index = index;
+      listItem.classList.add("escape");
 
       const checkbox = document.createElement("ion-icon");
       checkbox.setAttribute(
@@ -101,7 +102,7 @@ export default (function dom() {
   const handleTitleClick = (event) => {
     const clickedIndex = event.target.dataset.index;
     const currentTodo = state.getActiveProject().getChildren()[clickedIndex];
-    
+
     const node = event.target;
     node.textContent = "";
 
@@ -114,13 +115,42 @@ export default (function dom() {
     input.focus();
 
     node.removeEventListener("click", handleTitleClick);
+    document.addEventListener("click", handleClickToCloseTextField);
   };
 
   const handlePriorityClick = (event) => {
     const clickedIndex = event.target.dataset.index;
     const currentTodo = state.getActiveProject().getChildren()[clickedIndex];
     currentTodo.togglePriority();
-    renderTodos();
+
+    const node = document.querySelector(
+      `.priority[data-index="${clickedIndex}"]`
+    );
+    node.className = "";
+    node.classList.add(
+      "pill-badge",
+      "priority",
+      "priority-" + currentTodo.getPriority()
+    );
+  };
+
+  const handleClickToCloseTextField = (event) => {
+    if (event.target.classList.contains("escape")) {
+      const textField = document.querySelector(".todo-text-edit");
+      const newValue = textField.value;
+      const titleSpan = textField.parentNode;
+      const textFieldIndex = titleSpan.dataset.index;
+      const currentTodo = state.getActiveProject().getChildren()[
+        textFieldIndex
+      ];
+      
+      currentTodo.setTitle(newValue);
+
+      titleSpan.textContent = currentTodo.getTitle();
+
+      document.removeEventListener("click", handleClickToCloseTextField);
+      titleSpan.addEventListener("click", handleTitleClick);
+    }
   };
 
   return {
