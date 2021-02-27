@@ -11,12 +11,12 @@ export default function Todo(title, dueDate, priority, isChecked) {
     dueDate = newDueDate;
   };
   const togglePriority = () => {
-    if (priority === 3) {
-      priority = 2;
-    } else if (priority === 2) {
-      priority = 1;
-    } else if (priority === 1) {
-      priority = 3;
+    if (priority === "3") {
+      priority = "2";
+    } else if (priority === "2") {
+      priority = "1";
+    } else if (priority === "1") {
+      priority = "3";
     }
   };
   const toggleCheckedState = () => {
