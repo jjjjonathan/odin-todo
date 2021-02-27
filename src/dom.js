@@ -32,27 +32,20 @@ export default (function dom() {
       title.textContent = todo.getTitle();
       listItem.appendChild(title)
 
-      //if (todo.getDueDate() || todo.getImportantState()) {
-        const rightInfo = document.createElement("div");
-        rightInfo.classList.add("todo-right-info")
-        listItem.appendChild(rightInfo)
-      //}
+      const dueDate = document.createElement("span");
+      dueDate.classList.add("pill-badge", "due-date");
+      dueDate.textContent = todo.getDueDate();
+      listItem.appendChild(dueDate);
 
-      if (todo.getDueDate()) {
-        const dueDate = document.createElement("span");
-        dueDate.classList.add("due-date");
-        dueDate.textContent = todo.getDueDate();
-        rightInfo.appendChild(dueDate);
-      }
-
-      if (todo.getImportantState()) {
-        const important = document.createElement("ion-icon");
-        important.setAttribute("name", "alert-circle");
-        important.classList.add("important");
-        rightInfo.appendChild(important);
-      }
+      const priority = document.createElement("span");
+      priority.classList.add("pill-badge", "priority", "priority-" + todo.getPriority());
+      listItem.appendChild(priority);
 
       todoContainer.appendChild(listItem);
+
+      // event handlers
+
+
     })
   }
 

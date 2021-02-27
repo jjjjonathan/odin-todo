@@ -10,9 +10,9 @@ projects.push(Project("Test Project", []));
 projects.push(trash);
 
 // add example todos
-projects[0].addChild(Todo("Walk the dog", "Don't forget to bring a poop bag", "March 17", true, true), -1)
-projects[1].addChild(Todo("Walk the frog", null, null, true, false), -1)
-projects[1].addChild(Todo("Stalk the log", "Don't forget to bring a poop bag", "March 19", false, true), -1)
+projects[0].addChild(Todo("Walk the dog", "March 17", 2, true), -1)
+projects[1].addChild(Todo("Walk the frog", "Anytime", 3, false), -1)
+projects[1].addChild(Todo("Stalk the log", "March 19", 1, true), -1)
 
 
 export default projects;
