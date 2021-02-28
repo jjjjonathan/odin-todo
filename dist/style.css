@@ -192,6 +192,22 @@ h1 {
   content: "!"
 }
 
+.todo-remove {
+  visibility: hidden;
+  vertical-align: -.3rem;
+  font-size: 1.3rem;
+  margin-left: .4rem;
+}
+
+.todos li:hover > .todo-remove {
+  visibility: visible;
+}
+
+.todo-remove:hover {
+  color: var(--red);
+  cursor: pointer;
+}
+
 .new-item-text {
   opacity: 0.5;
 }

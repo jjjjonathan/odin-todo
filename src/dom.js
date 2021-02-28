@@ -16,6 +16,7 @@ export default (function dom() {
 
         const icon = document.createElement("ion-icon");
         icon.setAttribute("name", "trash");
+        icon.dataset.index = index;
         listItem.appendChild(icon);
       }
 
@@ -85,6 +86,13 @@ export default (function dom() {
       );
       priority.dataset.index = index;
       listItem.appendChild(priority);
+
+      const remove = document.createElement("ion-icon")
+      remove.setAttribute("name", "trash");
+      remove.classList.add("todo-remove");
+      remove.dataset.index = index;
+      listItem.appendChild(remove);
+
 
       todoContainer.appendChild(listItem);
 
