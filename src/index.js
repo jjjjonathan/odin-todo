@@ -4,15 +4,15 @@ import trash from "./trash.js";
 import dom from "./dom.js";
 
 const state = (() => {
-  // initialize project array, default project, test project, and trash
+  // initialize project array, default project, and trash
   const projects = [];
-  projects.push(Project("Default Project", []));
-  projects.push(Project("Test Project", []));
+  projects.push(Project("Todos", []));
   projects.push(trash);
 
   // add example todos
-  projects[0].addChild(Todo("Walk the dog", "March 17", "2", true), -1);
-  projects[1].addChild(Todo("Walk the frog", "Anytime", "3", false), -1);
+  projects[0].addChild(Todo("Walk the dog", "March 17", "3", false), -1);
+  projects[0].addChild(Todo("Plant a tree", "April 3", "2", false), -1);
+  projects[0].addChild(Todo("End world hunger", "Anytime", "1", false), -1);
 
   let activeProject = 0;
 
@@ -43,11 +43,6 @@ const state = (() => {
 })();
 
 export default state;
-
-// add example todos
-state
-  .getProjectByIndex(1)
-  .addChild(Todo("Stalk the log", "March 19", "1", true), -1);
 
 function onload() {
   dom.renderAll();

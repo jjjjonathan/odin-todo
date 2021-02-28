@@ -55,7 +55,6 @@ export default (function dom() {
     project.getChildren().forEach((todo, index) => {
       const listItem = document.createElement("li");
       listItem.dataset.index = index;
-      listItem.classList.add("escape");
 
       const checkbox = document.createElement("ion-icon");
       checkbox.setAttribute(
