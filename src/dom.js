@@ -1,4 +1,5 @@
 import state from "./index.js";
+import Todo from "./todo.js";
 
 export default (function dom() {
   const renderProjects = (projects, activeProjectIndex) => {
@@ -30,6 +31,25 @@ export default (function dom() {
   const renderTodosByProject = (project) => {
     const todoContainer = document.getElementById("todo-container");
     todoContainer.textContent = "";
+
+    if (!project.hasOwnProperty("empty")) {
+      const newItemLi = document.createElement("li");
+      newItemLi.classList.add("new-todo-button");
+      newItemLi.id = "new-item-container";
+
+      const icon = document.createElement("ion-icon");
+      icon.setAttribute("name", "add-circle");
+      icon.classList.add("checkbox");
+      newItemLi.appendChild(icon);
+
+      const newItemText = document.createElement("span");
+      newItemText.classList.add("todo-title", "new-item-text");
+      newItemText.textContent = "New item";
+      newItemLi.appendChild(newItemText);
+
+      todoContainer.appendChild(newItemLi);
+      newItemLi.addEventListener("click", handleNewItemClick);
+    }
 
     project.getChildren().forEach((todo, index) => {
       const listItem = document.createElement("li");
@@ -87,23 +107,35 @@ export default (function dom() {
 
   const commitTextField = () => {
     const input = document.querySelector(".todo-text-edit");
-
     if (input) {
       const newValue = input.value;
-      const node = input.parentNode;
-      const index = node.dataset.index;
-      const currentTodo = state.getActiveProject().getChildren()[index];
+      let node = input.parentNode;
 
-      if (node.classList.contains("todo-title")) {
-        currentTodo.setTitle(newValue);
-        node.textContent = currentTodo.getTitle();
-      } else if (node.classList.contains("due-date")) {
-        currentTodo.setDueDate(newValue);
-        node.textContent = currentTodo.getDueDate();
+      if (node.parentNode.id === "new-item-container") { //if input is for new item
+        node = input.parentNode.parentNode;
+
+        state.getActiveProject().addChild(Todo(newValue, "Anytime", "3", false), 0);
+
+        renderTodos();
+        //node.addEventListener("click", handleNewItemClick);
+
+      } else { // if input is for editing existing todo title or duedate
+        const index = node.dataset.index;
+        const currentTodo = state.getActiveProject().getChildren()[index];
+  
+        if (node.classList.contains("todo-title")) {
+          currentTodo.setTitle(newValue);
+          node.textContent = currentTodo.getTitle();
+        } else if (node.classList.contains("due-date")) {
+          currentTodo.setDueDate(newValue);
+          node.textContent = currentTodo.getDueDate();
+        }
+
+        node.addEventListener("click", handleTextFieldClick);
       }
 
       document.removeEventListener("click", handleClickToCloseTextField);
-      node.addEventListener("click", handleTextFieldClick);
+      
     }
   };
 
@@ -179,8 +211,42 @@ export default (function dom() {
     }
   };
 
+  const handleNewItemClick = (event) => {
+    commitTextField()
+
+    const node = document.querySelector("li#new-item-container")
+    node.className = "";
+
+    const span = document.querySelector("li#new-item-container span")
+    span.textContent = "";
+    span.className = "todo-title";
+
+    const input = document.createElement("input");
+    input.type = "text";
+    input.classList.add("todo-text-edit", "todo-title-edit");
+    input.value = "New item";
+
+    span.appendChild(input);
+    input.focus();
+
+    node.removeEventListener("click", handleNewItemClick);
+
+    const icon = document.querySelector("li#new-item-container ion-icon")
+    icon.addEventListener("click", commitTextField);
+  }
+
+  const handleEnter = (event) => {
+    if (event.keyCode === 13) {
+      const active = document.activeElement.tagName.toLowerCase();
+      if (active === "input") {
+        commitTextField()
+      }
+    }
+  }
+
   return {
     renderAll,
     renderTodos,
+    handleEnter,
   };
 })();

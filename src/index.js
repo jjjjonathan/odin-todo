@@ -39,4 +39,9 @@ export default state;
 // add example todos
 state.getProjectByIndex(1).addChild(Todo("Stalk the log", "March 19", "1", true), -1);
 
-document.addEventListener("DOMContentLoaded", dom.renderAll);
+function onload() {
+  dom.renderAll()
+  document.addEventListener("keyup", dom.handleEnter)
+}
+
+document.addEventListener("DOMContentLoaded", onload);
