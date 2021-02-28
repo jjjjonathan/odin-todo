@@ -6,11 +6,6 @@ export default (function trash() {
     []
   );
 
-  const deleteChild = (indexOfChildToDelete) => {
-    // permanently deletes child
-    children.splice(indexOfChildToDelete, 1);
-  };
-
   const empty = () => {
     // if you get assignment to constant var error, remove them with a loop instead
     children = [];
@@ -22,7 +17,6 @@ export default (function trash() {
     addChild,
     removeChild,
     shiftChild,
-    deleteChild,
     empty,
   };
 })();

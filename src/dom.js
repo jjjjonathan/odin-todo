@@ -87,12 +87,11 @@ export default (function dom() {
       priority.dataset.index = index;
       listItem.appendChild(priority);
 
-      const remove = document.createElement("ion-icon")
+      const remove = document.createElement("ion-icon");
       remove.setAttribute("name", "trash");
       remove.classList.add("todo-remove");
       remove.dataset.index = index;
       listItem.appendChild(remove);
-
 
       todoContainer.appendChild(listItem);
 
@@ -101,6 +100,7 @@ export default (function dom() {
       title.addEventListener("click", handleTextFieldClick);
       dueDate.addEventListener("click", handleTextFieldClick);
       priority.addEventListener("click", handlePriorityClick);
+      remove.addEventListener("click", handleTrashClick);
     });
   };
 
@@ -119,18 +119,21 @@ export default (function dom() {
       const newValue = input.value;
       let node = input.parentNode;
 
-      if (node.parentNode.id === "new-item-container") { //if input is for new item
+      if (node.parentNode.id === "new-item-container") {
+        //if input is for new item
         node = input.parentNode.parentNode;
 
-        state.getActiveProject().addChild(Todo(newValue, "Anytime", "3", false), 0);
+        state
+          .getActiveProject()
+          .addChild(Todo(newValue, "Anytime", "3", false), 0);
 
         renderTodos();
         //node.addEventListener("click", handleNewItemClick);
-
-      } else { // if input is for editing existing todo title or duedate
+      } else {
+        // if input is for editing existing todo title or duedate
         const index = node.dataset.index;
         const currentTodo = state.getActiveProject().getChildren()[index];
-  
+
         if (node.classList.contains("todo-title")) {
           currentTodo.setTitle(newValue);
           node.textContent = currentTodo.getTitle();
@@ -143,7 +146,6 @@ export default (function dom() {
       }
 
       document.removeEventListener("click", handleClickToCloseTextField);
-      
     }
   };
 
@@ -160,14 +162,14 @@ export default (function dom() {
     const clickedIndex = event.target.dataset.index;
     const currentTodo = state.getActiveProject().getChildren()[clickedIndex];
     currentTodo.toggleCheckedState();
-    
+
     const node = document.querySelector(
       `.checkbox[data-index="${clickedIndex}"]`
     );
     node.setAttribute(
       "name",
       currentTodo.getCheckedState() ? "checkbox-outline" : "square-outline"
-    )
+    );
   };
 
   const handleTextFieldClick = (event) => {
@@ -213,6 +215,19 @@ export default (function dom() {
     );
   };
 
+  const handleTrashClick = (event) => {
+    const clickedIndex = event.target.dataset.index;
+    const currentProject = state.getActiveProject();
+    const removedChild = currentProject.removeChild(clickedIndex);
+
+    if (!state.getActiveProject().hasOwnProperty("empty")) {
+      const trash = state.getProjectByIndex(-1);
+      trash.addChild(removedChild, -1);
+    }
+
+    renderTodos();
+  };
+
   const handleClickToCloseTextField = (event) => {
     if (event.target.classList.contains("escape")) {
       commitTextField();
@@ -220,12 +235,12 @@ export default (function dom() {
   };
 
   const handleNewItemClick = (event) => {
-    commitTextField()
+    commitTextField();
 
-    const node = document.querySelector("li#new-item-container")
+    const node = document.querySelector("li#new-item-container");
     node.className = "";
 
-    const span = document.querySelector("li#new-item-container span")
+    const span = document.querySelector("li#new-item-container span");
     span.textContent = "";
     span.className = "todo-title";
 
@@ -239,18 +254,18 @@ export default (function dom() {
 
     node.removeEventListener("click", handleNewItemClick);
 
-    const icon = document.querySelector("li#new-item-container ion-icon")
+    const icon = document.querySelector("li#new-item-container ion-icon");
     icon.addEventListener("click", commitTextField);
-  }
+  };
 
   const handleEnter = (event) => {
     if (event.keyCode === 13) {
       const active = document.activeElement.tagName.toLowerCase();
       if (active === "input") {
-        commitTextField()
+        commitTextField();
       }
     }
-  }
+  };
 
   return {
     renderAll,

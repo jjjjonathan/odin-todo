@@ -22,7 +22,15 @@ const state = (() => {
   };
   const getActiveProject = () => projects[activeProject];
 
-  const getProjectByIndex = (index) => projects[index];
+  const getProjectByIndex = (index) => {
+    // use index of -1 to get final project (Trash)
+    if (index >= 0) {
+      return projects[index];
+    } else if (index == -1) {
+      return projects[projects.length - 1];
+    }
+  };
+
   const getProjectArray = () => projects;
 
   return {
@@ -37,11 +45,13 @@ const state = (() => {
 export default state;
 
 // add example todos
-state.getProjectByIndex(1).addChild(Todo("Stalk the log", "March 19", "1", true), -1);
+state
+  .getProjectByIndex(1)
+  .addChild(Todo("Stalk the log", "March 19", "1", true), -1);
 
 function onload() {
-  dom.renderAll()
-  document.addEventListener("keyup", dom.handleEnter)
+  dom.renderAll();
+  document.addEventListener("keyup", dom.handleEnter);
 }
 
 document.addEventListener("DOMContentLoaded", onload);
